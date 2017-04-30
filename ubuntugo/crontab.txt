@@ -1,0 +1,2 @@
+* * * * * ( date +%d-%m-%y/%H:%M:%S ; bash -c "/script/githubauto/githubauto.sh") >> /var/log/githubauto.log 2>&1
+
