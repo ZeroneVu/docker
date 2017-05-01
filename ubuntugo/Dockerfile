@@ -34,12 +34,12 @@ RUN mkdir -p /script
 RUN git -C /script clone https://github.com/ZeroneVu/shell.git ./
 
 # Cron ... need some jobs too. All of us do.
-RUN apt update && apt install -y cron --no-install-recommends \
+RUN apt-get install -y cron --no-install-recommends
 COPY crontab.txt /var/crontab.txt
 RUN crontab /var/crontab.txt
 RUN chmod 600 /etc/crontab
 
 # Supervisor and configuration
-RUN apt install -y supervisor --no-install-recommends \
+RUN apt-get install -y supervisor --no-install-recommends
 COPY supervisord.conf /etc/supervisor/
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
