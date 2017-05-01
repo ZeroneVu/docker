@@ -34,7 +34,7 @@ RUN mkdir -p /script
 RUN git -C /script clone https://github.com/ZeroneVu/shell.git ./
 
 # Cron ... need some jobs too. All of us do.
-RUN apt-get install -y cron --no-install-recommends
+RUN apt-get -qq -y install cron --no-install-recommends
 COPY crontab.txt /var/crontab.txt
 RUN crontab /var/crontab.txt
 RUN chmod 600 /etc/crontab
