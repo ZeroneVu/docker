@@ -33,12 +33,13 @@ COPY go-wrapper /usr/local/bin/
 RUN mkdir -p /script
 RUN git -C /script clone https://github.com/ZeroneVu/shell.git ./
 
-RUN apt install -y cron
+# Cron ... need some jobs too. All of us do.
+RUN apt update && apt install -y cron --no-install-recommends \
 COPY crontab.txt /var/crontab.txt
 RUN crontab /var/crontab.txt
 RUN chmod 600 /etc/crontab
 
 # Supervisor and configuration
-RUN apt install -y supervisor
+RUN apt install -y supervisor --no-install-recommends \
 COPY supervisord.conf /etc/supervisor/
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
