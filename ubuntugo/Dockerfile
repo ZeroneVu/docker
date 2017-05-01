@@ -2,14 +2,14 @@ FROM ubuntu:16.04
 MAINTAINER ZeroneVu <zeronevu@gmail.com>
 
 # gcc for cgo, and all other common packages
-RUN apt update && apt install -y --no-install-recommends \
-		curl \
-		ca-certificates \
-		build-essential \		
-		git \
-		mercurial \
-		bzr \
-	&& rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  curl \
+  ca-certificates \
+  build-essential \		
+  git \
+  mercurial \
+  bzr \
+  && rm -rf /var/lib/apt/lists/*
 
 # Starting environment config, download the go source file
 ENV GOLANG_VERSION 1.8.1
@@ -33,8 +33,12 @@ COPY go-wrapper /usr/local/bin/
 RUN mkdir -p /script
 RUN git -C /script clone https://github.com/ZeroneVu/shell.git ./
 
-# Cron ... need some jobs too. All of us do.
-RUN apt-get -qq -y install cron --no-install-recommends
+# Installing cron ... need some jobs too. All of us too
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  cron \
+  && rm -rf /var/lib/apt/lists/*
+
 COPY crontab.txt /var/crontab.txt
 RUN crontab /var/crontab.txt
 RUN chmod 600 /etc/crontab
