@@ -44,6 +44,9 @@ RUN crontab /var/crontab.txt
 RUN chmod 600 /etc/crontab
 
 # Supervisor and configuration
-RUN apt-get install -y supervisor --no-install-recommends
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  supervisor \
+  && rm -rf /var/lib/apt/lists/*
+
 COPY supervisord.conf /etc/supervisor/
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
