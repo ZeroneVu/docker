@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
   gcc-multilib \
   g++-multilib
 
-RUN npm install -g nightmare
+RUN npm install -g nightmare --unsafe-perm=true
 
 COPY entrypoint.sh /entrypoint.sh
 
