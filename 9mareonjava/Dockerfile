@@ -27,5 +27,7 @@ RUN npm install -g nightmare --unsafe-perm=true
 
 COPY entrypoint.sh /entrypoint.sh
 
+RUN ["chmod", "+x", "/entrypoint.sh"]
+
 WORKDIR /mnt/work
 ENTRYPOINT ["/entrypoint.sh"]
