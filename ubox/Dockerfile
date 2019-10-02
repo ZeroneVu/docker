@@ -2,6 +2,7 @@ FROM ubuntu:18.04
 MAINTAINER ZeroneVu <zeronevu@gmail.com>
 
 RUN apt update && apt install -y --no-install-recommends \
+  ca-certificates \
   curl \
   git \
   nano \
