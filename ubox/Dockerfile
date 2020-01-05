@@ -5,6 +5,7 @@ RUN apt update && apt install -y --no-install-recommends \
   ca-certificates \
   openssh-client \
   curl \
+  wget \
   git \
   nano \
   && rm -rf /var/lib/apt/lists/*
